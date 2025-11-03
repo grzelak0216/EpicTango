@@ -1,0 +1,5 @@
+export EPICS_ROOT=~/epics
+export EPICS_BASE=$EPICS_ROOT/epics-base
+export EPICS_MODULES=$EPICS_ROOT/modules
+export PATH=$EPICS_BASE/bin/<ARCH>:$PATH
+export LD_LIBRARY_PATH=$EPICS_BASE/lib/<ARCH>:$LD_LIBRARY_PATH
