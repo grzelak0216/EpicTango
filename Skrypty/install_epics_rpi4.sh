@@ -9,7 +9,10 @@ sudo apt install -y \
     python3-dev python3-numpy python3-pip ca-certificates wget curl
 
 echo "==== Instalacja pyepics i caproto ===="
-pip3 install --user pyepics caproto
+sudo apt install -y python3-venv
+python3 -m venv ~/epics-venv
+source ~/epics-venv/bin/activate
+pip install pyepics caproto
 
 # Ścieżka główna
 EPICS_ROOT=~/epics
