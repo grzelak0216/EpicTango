@@ -1,0 +1,16 @@
+# Example substitutions file
+
+file "db/circle.db" {
+    { user = "glak" }
+}
+
+file "db/dbExample1.db" {
+    { user = "glak" }
+}
+
+file db/dbExample2.db {
+    pattern { user, no, scan }
+        { "glak", 1, "1 second" }
+        { "glak", 2, "2 second" }
+        { "glak", 3, "5 second" }
+}

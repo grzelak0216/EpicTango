@@ -1,0 +1,6 @@
+record(lsi, "$(user):connectorIOC:version") {
+    field(DTYP, "connectorIOC version")
+    field(DESC, "Version string")
+    field(SIZV, "$(SIZV=200)")
+    field(PINI, "YES")
+}

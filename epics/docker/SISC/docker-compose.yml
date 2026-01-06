@@ -1,9 +1,0 @@
-version: '3.7'
-
-services:
-  epics:
-    image: epics-e3
-    command: tail -f /dev/null
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-
