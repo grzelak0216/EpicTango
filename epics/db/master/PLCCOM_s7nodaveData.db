@@ -1,0 +1,500 @@
+# #########################################################
+# ########################## 2023 #########################
+# #########################################################
+
+# ######################### OUTPUT ########################
+
+# ### CRITICAL
+
+# record(bo, "$(P):bo0:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True")     
+#     field(VAL, "0")
+#     field(OUT, "$(P):s7:singleBitToPlc:plcproc1:s7com PP")
+# }
+
+# record(bo, "$(P):bo1:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True")     
+#     field(VAL, "0")
+#     field(OUT, "$(P):s7:singleBitToPlc:plcproc2:s7com PP")
+# }
+
+# record(bo, "$(P):bo2:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True")     
+#     field(VAL, "0")
+#     field(OUT, "dummyslave2:bo1 PP")
+# }
+
+# record(bo, "$(P):bo3:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True")     
+#     field(VAL, "0")
+#     field(OUT, "dummyslave3:bo1 PP")
+# }
+
+# ### NOT CRITICAL
+
+# record(ao, "$(P):ao0:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(VAL, "0")
+#     field(OUT, "$(P):ao1:plcproc1 PP")
+# }
+
+# record(ao, "$(P):ao1:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(VAL, "0")
+#     field(OUT, "$(P):ao1:plcproc2 PP")
+# }
+
+# record(ao, "$(P):ao2:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(VAL, "0")
+#     field(OUT, "dummyslave2:ao1 PP")
+# }
+
+# record(ao, "$(P):ao3:MasterToSlave") {
+#     field(DTYP, "Soft Channel")
+#     field(VAL, "0")
+#     field(OUT, "dummyslave3:ao1 PP")
+# }
+
+# #########################################################
+
+# ######################## RECEIVED #######################
+
+# ### CRITICAL
+
+# record(bi, "$(P):bi0:received") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True") 
+#     field(SCAN, "Passive")
+#     field(INP, "$(P):s7:singleBitFromPlc:plcproc1:s7com")
+#     # field(PINI, "NO")
+    
+# }
+
+# record(bi, "$(P):bi1:received") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True") 
+#     field(SCAN, "Passive")
+#     field(INP, "$(P):s7:singleBitFromPlc:plcproc2:s7com")
+#     # field(PINI, "NO")
+# }
+
+# record(bi, "$(P):bi2:received") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True") 
+#     field(SCAN, "I/O Intr")
+#     # # field(SCAN, "Passive")
+#     # field(INP, "dummyslave2:bi1")
+#     # field(PINI, "NO")
+# }
+
+# record(bi, "$(P):bi3:received") {
+#     field(DTYP, "Soft Channel")
+#     field(ZNAM, "False")    
+#     field(ONAM, "True") 
+#     # field(SCAN, "I/O Intr")
+#     # field(SCAN, "Passive")
+#     # field(INP, "dummyslave3:bi1")
+#     # field(PINI, "NO")
+# }
+
+# ### NOT CRITICAL
+
+# record(ai, "$(P):ai0:received") {
+#     field(DTYP, "Soft Channel")
+#     field(SCAN, "Passive")
+#     # field(SCAN, "I/O Intr")
+#     field(INP, "$(P):ai1:plcproc1")
+#     # field(PINI, "NO")
+# }
+
+# record(ai, "$(P):ai1:received") {
+#     field(DTYP, "Soft Channel")
+#     field(SCAN, "Passive")
+#     field(INP, "$(P):ai1:plcproc2")
+#     # field(PINI, "NO")
+# }
+
+# record(ai, "$(P):ai2:received") {
+#     field(DTYP, "Soft Channel")
+#     # field(SCAN, "Passive")
+#     # field(INP, "dummyslave2:ai1")
+#     # field(PINI, "NO")
+# }
+
+# record(ai, "$(P):ai3:received") {
+#     field(DTYP, "Soft Channel")
+#     # field(SCAN, "Passive")
+#     # field(INP, "dummyslave3:ai1")
+#     # field(PINI, "NO")
+# }
+
+
+# #########################################################
+
+# #########################################################
+# #########################################################
+# #########################################################
+
+
+
+
+
+# record(bo, "$(P):bSingleBitToPlc") {
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Single bit to PLC")
+#     # field(ZNAM, "No")   
+#     # field(ONAM, "Yes") 
+#     field(ZSV, "MAJOR")
+#     field(ZNAM, "False")
+#     field(ONAM, "True")
+#     field(PINI,"YES")
+#     field(OUT,  "@PLC_COM DB2301.DBX22.0 bool")
+# }
+
+
+# record(bo, "$(P):bSignalQ") {
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Single bit to PLC Q")
+    # field(ZNAM, "No")   
+    # field(ONAM, "Yes") 
+#     field(ZSV, "MAJOR")
+#     field(ZNAM, "False")
+#     field(ONAM, "True")
+#     field(PINI,"YES")
+#     field(OUT,  "@PLC_COM Q0.1 bool")
+# }
+
+# record(bi, "$(P):bSingleBitFromPlc") {
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Single bit from PLC")
+#     field(ZNAM, "No")   
+#     field(ONAM, "Yes")     
+#     field(INP,  "@PLC_COM DB2202.DBX24.1 bool")
+#     # field(SCAN, "I/O Intr")
+# }
+
+# record(bi, "$(P):s7:bResetData:bi"){
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Read reset data")
+#     field(INP, "@PLC_COM  DB1.DBX0.0 bool")
+#     field(ZNAM, "No")
+#     field(ONAM, "Yes")
+#     field(SCAN, "1 second")
+# }
+
+# record(bo, "$(P):s7:bResetData:bo"){
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Reset data")
+#     field(OUT, "@PLC_COM DB2.DBX0.0 bool")
+#     field(SCAN, "1 second")
+# }
+
+
+record(bo, "$(P):test"){
+    # field(DTYP, "s7nodave")
+    field(DESC, "test")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+
+###################################
+####################################
+###################################
+
+# record(ao, "$(P):s7:dwSinWavePeriod:ao"){
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Read sin wave period")
+#     field(OUT, "@PLC_COM(PG=1s)  DB2002.DBD2 int32")
+#     field(SCAN, "I/O Intr")
+# }
+
+###################################
+####################################
+###################################
+
+
+
+############### PLC COM ###############
+
+# Single Bit from PLC to IOC
+record (bi, "$(P):s7:singleBitFromPlc:plccom")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBX28.0 bool")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Single bit from PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+}
+
+# Single Bit from PLC to IOC
+record (bo, "$(P):s7:singleBitToPlc:plccom")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBX12.1 bool")
+    field(DESC, "Single bit to PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+}
+
+# Multi Bits from PLC to IOC
+record (ai, "$(P):s7:multiBitsFromPlc:plccom")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBD24 int32")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Multiple bits from PLC")
+    field(PINI, "YES")
+}
+
+# Multi Bits from IOC to PLC
+record (ao, "$(P):s7:multiBitsToPlc:plccom")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBD14 int32")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Multiple bits to PLC")
+    field(PINI, "YES")
+}
+
+
+
+############### PLC PROC OUC ###############
+
+# Single Bit from PLC PROC1 to IOC
+record (bi, "$(P):s7:singleBitFromPlc:plcproc1:ouc")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBX8.0 bool")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Single bit from PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    # field(FLNK, "$(P):bi0:received")
+    field(FLNK, "$(P):bo0:critical:singlebit:received")
+}
+
+# Single Bit from IOC to PLC PROC1
+record (bo, "$(P):s7:singleBitToPlc:plcproc1:ouc")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBX0.1 bool")
+    field(DESC, "Single bit to PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+}
+
+# Multi Bits from PLC PROC1 to IOC
+
+ record (ai, "$(P):s7:multiBitsFromPlc:plcproc1:ouc")
+ {	
+    field(DTYP, "s7nodave") 	
+    field(INP, "@PLC_COM DB2202.DBD4 int32") 	
+    field(SCAN, "I/O Intr")
+    field(DESC, "Multi bits from PLC PROC to IOC")
+    field(PINI, "YES")
+    field(FLNK, "$(P):ao0:critical:multibit:received")
+ }
+
+# Multi Bits from IOC to PLC PROC1
+ record (ao, "$(P):s7:multiBitsToPlc:plcproc1:ouc")
+ {	
+    field(DTYP, "s7nodave")
+ 	field(OUT, "@PLC_COM DB2201.DBD2 int32")
+    field(DESC, "Multi bits from IOC to PLC PROC")
+    field(PINI, "YES")
+ }
+
+# Single Bit from PLC PROC2 to IOC
+record (bi, "$(P):s7:singleBitFromPlc:plcproc2:ouc")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBX38.0 bool")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Single bit from PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    # field(FLNK, "$(P):bi1:received")
+    field(FLNK, "$(P):bo1:critical:singlebit:received")
+}
+
+# Single Bit from IOC to PLC PROC2
+record (bo, "$(P):s7:singleBitToPlc:plcproc2:ouc")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBX18.1 bool")
+    field(DESC, "Single bit to PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+}
+
+# Multi Bits from PLC PROC2 to IOC
+
+ record (ai, "$(P):s7:multiBitsFromPlc:plcproc2:ouc")
+ {	
+    field(DTYP, "s7nodave") 	
+    field(INP, "@PLC_COM DB2202.DBD34 int32") 	
+    field(SCAN, "I/O Intr")
+    field(DESC, "Multi bits from PLC PROC2 to IOC")
+    field(PINI, "YES")
+    field(FLNK, "$(P):ao1:critical:multibit:received")
+ }
+
+# Multi Bits from IOC to PLC PROC2
+ record (ao, "$(P):s7:multiBitsToPlc:plcproc2:ouc")
+ {	
+    field(DTYP, "s7nodave")
+ 	field(OUT, "@PLC_COM DB2201.DBD20 int32")
+    field(DESC, "Multi bits from IOC to PLC PROC2")
+    field(PINI, "YES")
+ }
+
+
+############### PLC PROC S7COM ###############
+
+# Single Bit from PLC PROC1 to IOC
+record (bi, "$(P):s7:singleBitFromPlc:plcproc1:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBX18.0 bool")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Single bit from PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    # field(FLNK, "$(P):bi0:received")
+    field(FLNK, "$(P):bo0:critical:singlebit:received")
+}
+
+# Single Bit from IOC to PLC PROC1
+record (bo, "$(P):s7:singleBitToPlc:plcproc1:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBX6.1 bool")
+    field(DESC, "Single bit to PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    field(SCAN, "I/O Intr")
+}
+
+# Multi Bits from PLC PROC1 to IOC
+record (ai, "$(P):s7:multiBtsFromPlc:plcproc1:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBD14 int32")
+	field(SCAN, "I/O Intr")
+    field(DESC, "MUlti bits from PLCPROC S7COM")
+    field(PINI, "YES")
+    field(FLNK, "$(P):ao0:critical:multibit:received")
+}
+
+# Multi Bits from IOC to PLC PROC1
+record (ao, "$(P):s7:multiBitsToPlc:plcproc1:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBD8 int32")
+    field(DESC, "Multi bits to PLCPROC S7COM")
+    field(PINI, "YES")
+}
+
+# Single Bit from PLC PROC2 to IOC
+record (bi, "$(P):s7:singleBitFromPlc:plcproc2:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBX48.0 bool")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Single bit from PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    # field(FLNK, "$(P):bi1:received")
+    field(FLNK, "$(P):bo1:critical:singlebit:received")
+}
+
+# Single Bit from IOC to PLC PROC2
+record (bo, "$(P):s7:singleBitToPlc:plcproc2:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBX24.1 bool")
+    field(DESC, "Single bit to PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    field(SCAN, "I/O Intr")
+    # field(FLNK, "$(P):bi0:received")
+}
+
+# Multi Bits from PLC PROC2 to IOC
+record (ai, "$(P):s7:multiBtsFromPlc:plcproc2:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_COM DB2202.DBD44 int32")
+	field(SCAN, ".1 second")
+    field(DESC, "MUlti bits from PLCPROC2 S7COM")
+    field(PINI, "YES")
+    field(FLNK, "$(P):ao1:critical:multibit:received")
+}
+
+# Multi Bits from IOC to PLC PROC2
+record (ao, "$(P):s7:multiBitsToPlc:plcproc2:s7com")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_COM DB2201.DBD26 int32")
+    field(DESC, "Multi bits to PLCPROC2 S7COM")
+    field(PINI, "YES")
+}
+
+
+########################### Local time #########################
+
+
+# record(ai, "$(P):s7:diLocalTime:plcproc:ouc:ao"){
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Read local time")
+#     field(INP, "@PLC_COM DB2202.DBD4 int32")
+#     field(SCAN, "I/O Intr")
+# }
+
+# record(ai, "$(P):s7:diLocalTime:plcproc:s7com:ao"){
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Read local time")
+#     field(INP, "@PLC_COM DB2202.DBD1638 int32")
+#     field(SCAN, "I/O Intr")
+# }
+
+# record(ai, "$(P):s7:diLocalTime:plccom:ao"){
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Read local time")
+#     field(INP, "@PLC_COM DB2202.DBD3272 int32")
+#     field(SCAN, "I/O Intr")
+# }

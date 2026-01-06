@@ -1,0 +1,133 @@
+#########################################################
+########################## 2023 #########################
+#########################################################
+
+### NOT CRITICAL
+
+record(ao, "$(P):ao1:plcproc2") {
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(OUT, "$(P):s7:diLocalTimeIOC:plcproc2:ai PP")
+    # field(FLNK, "$(P):ai1:plcproc2")
+}
+
+record(ao, "$(P):ai1:plcproc2") {
+    field(DTYP, "Soft Channel")
+    field(OMSL, "closed_loop")
+    field(DOL, "$(P):s7:diLocalTimeIOC:plcproc2:ao PP")
+    # field(OUT, "$(P):ai1:received PP")
+    field(OUT, "$(P):ao1:notCritical:analog:received PP")
+    field(SCAN, "Passive")
+    # field(FLNK, "$(P):ai1:received PP")
+}
+
+#########################################################
+
+record(bo, "$(P):bo1:plcproc2") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(SCAN, "Passive")
+    field(OUT, "$(P):s7:singleBitToPlc:plcproc2 PP")
+    # field(FLNK, "$(P):bi1:plcproc2")
+}
+
+record(bo, "$(P):bi1:plcproc2") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(OMSL, "closed_loop")
+    field(DOL, "$(P):s7:singleBitFromPlc:plcproc2 PP")
+    # field(OUT, "$(P):bi1:received PP")
+    field(OUT, "$(P):bo1:notCritical:singlebit:received PP")
+    field(SCAN, "Passive")
+    # field(FLNK, "$(P):bi2:received PP")
+}
+
+
+#########################################################
+
+#########################################################
+#########################################################
+#########################################################
+
+record(bo, "$(P):bSignalQ") {
+    field(DTYP, "s7nodave")
+    field(DESC, "Single bit to PLC Q")
+    # field(ZNAM, "No")   
+    # field(ONAM, "Yes") 
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI,"YES")
+    field(OUT,  "@PLC_PROCES1 Q0.1 bool")
+}
+
+record(bo, "$(P):test"){
+    # field(DTYP, "s7nodave")
+    field(DESC, "test")
+    field(ZNAM, "No")
+    field(ONAM, "Yes")
+}
+
+# SINGLE BIT - PLC PROC S7COM
+
+record (bi, "$(P):s7:singleBitFromPlc:plcproc2")
+{	
+    field(DTYP, "s7nodave")
+	field(INP, "@PLC_PROCES_2 DB2202.DBX34.1 bool")
+	field(SCAN, "I/O Intr")
+    field(DESC, "Single bit from PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    field(FLNK, "$(P):bi1:plcproc2")
+}
+
+record (bo, "$(P):s7:singleBitToPlc:plcproc2")
+{	
+    field(DTYP, "s7nodave")
+	field(OUT, "@PLC_PROCES_2 DB2201.DBX30.0 bool")
+    field(DESC, "Single bit to PLC")
+    field(ZSV, "MAJOR")
+    field(ZNAM, "False")
+    field(ONAM, "True")
+    field(PINI, "YES")
+    #field(SCAN, "I/O Intr")
+}
+
+########################### Local time #########################
+
+# record(ai, "$(P):s7:diLocalTime:ao"){
+#     field(DTYP, "s7nodave")
+#     field(DESC, "Read local time")
+#     field(INP, "@PLC_COM DB2202.DBD4 int32")
+#     field(SCAN, "I/O Intr")
+# }
+
+record(ai, "$(P):s7:diLocalTime:plcproc2:ao"){
+    field(DTYP, "s7nodave")
+    field(DESC, "Read local time")
+    field(INP, "@PLC_PROCES_2 DB2202.DBD14 int32")
+    field(SCAN, "I/O Intr")
+}
+
+#Czas z IOC
+record(ao, "$(P):s7:diLocalTimeIOC:plcproc2:ai")
+{
+    field(DTYP, "s7nodave")
+    field(DESC, "Read local time IOC")
+    field(OUT, "@PLC_PROCES_2 DB2201.DBD6 int32")
+    field(SCAN, "I/O Intr")
+}
+
+#Czas z IOC odbbity przez PLC
+record(ai, "$(P):s7:diLocalTimeIOC:plcproc2:ao")
+{
+    field(DTYP, "s7nodave")
+    field(DESC, "Read local time IOC")
+    field(INP, "@PLC_PROCES_2 DB2202.DBD10 int32")
+    field(SCAN, "I/O Intr")
+    field(FLNK, "$(P):ai1:plcproc2")
+}

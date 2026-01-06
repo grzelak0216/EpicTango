@@ -1,0 +1,98 @@
+#########################################################
+########################## 2023 #########################
+#########################################################
+
+### CRITICAL
+
+record(bo, "dummyslave$(P):bo1") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    # field(SCAN, "Passive")
+    field(OUT, "dummyioc$(P):bi1 PP")
+    field(FLNK, "dummyslave$(P):bi1")
+}
+
+record(bo, "dummyslave$(P):bi1") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(OMSL, "supervisory")
+    # field(OMSL, "closed_loop")
+    field(DOL, "dummyioc$(P):bo1 PP")
+    # field(OUT, "$(R):bi$(P):received PP")
+    field(OUT, "$(R):bo$(P):critical:singlebit:received PP")
+    # field(SCAN, "Passive")
+    # field(FLNK, "$(R):bi$(P):received")
+    field(FLNK, "$(R):bo$(P):critical:singlebit:received")
+}
+
+
+
+record(ao, "dummyslave$(P):ao1") {
+    field(DTYP, "Soft Channel")
+    field(OUT, "dummyioc$(P):ai1 PP")
+    field(FLNK, "dummyslave$(P):ai1")
+}
+
+record(ao, "dummyslave$(P):ai1") {
+    field(DTYP, "Soft Channel")
+    field(OMSL, "supervisory")
+    field(DOL, "dummyioc$(P):ao1 PP")
+    # field(OUT, "$(R):ai$(P):received PP")
+    field(OUT, "$(R):ao$(P):critical:multibit:received PP")
+    field(FLNK, "$(R):ao$(P):critical:multibit:received")
+    # field(FLNK, "$(R):ai$(P):received")
+}
+
+#########################################################
+
+### NOT CRITICAL
+
+record(bo, "dummyslave$(P):bo2") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    # field(SCAN, "Passive")
+    field(OUT, "dummyioc$(P):bi2 PP")
+    field(FLNK, "dummyslave$(P):bi2")
+}
+
+record(bo, "dummyslave$(P):bi2") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(OMSL, "supervisory")
+    # field(OMSL, "closed_loop")
+    field(DOL, "dummyioc$(P):bo2 PP")
+    # field(OUT, "$(R):bi$(P):received PP")
+    field(OUT, "$(R):bo$(P):notCritical:singlebit:received PP")
+    # field(SCAN, "Passive")
+    # field(FLNK, "$(R):bi$(P):received")
+    field(FLNK, "$(R):bo$(P):notCritical:singlebit:received")
+}
+
+
+
+record(ao, "dummyslave$(P):ao2") {
+    field(DTYP, "Soft Channel")
+    field(OUT, "dummyioc$(P):ai2 PP")
+    field(FLNK, "dummyslave$(P):ai2")
+}
+
+record(ao, "dummyslave$(P):ai2") {
+    field(DTYP, "Soft Channel")
+    field(OMSL, "supervisory")
+    field(DOL, "dummyioc$(P):ao2 PP")
+    # field(OUT, "$(R):ai$(P):received PP")
+    field(OUT, "$(R):ao$(P):notCritical:analog:received PP")
+    field(FLNK, "$(R):ao$(P):notCritical:analog:received")
+    # field(FLNK, "$(R):ai$(P):received")
+}
+
+#########################################################
+
+#########################################################
+#########################################################
+#########################################################
+

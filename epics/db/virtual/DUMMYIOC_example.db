@@ -1,0 +1,73 @@
+#########################################################
+########################## 2023 #########################
+#########################################################
+
+### CRITICAL
+
+record(bo, "dummyioc$(P):bi1") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(SCAN, "Passive")
+    field(OUT, "dummyioc$(P):bo1 PP")
+}
+
+record(bo, "dummyioc$(P):bo1") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(SCAN, "Passive")
+    field(OUT, "dummyslave$(P):bi1 PP") 
+}
+
+
+
+record(ao, "dummyioc$(P):ai1") {
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(OUT, "dummyioc$(P):ao1 PP")
+}
+
+record(ao, "dummyioc$(P):ao1") {
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(OUT, "dummyslave$(P):ai1 PP") 
+}
+
+#########################################################
+
+### NOT CRITICAL
+
+record(bo, "dummyioc$(P):bi2") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(SCAN, "Passive")
+    field(OUT, "dummyioc$(P):bo2 PP")
+}
+
+record(bo, "dummyioc$(P):bo2") {
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "False")    
+    field(ONAM, "True")
+    field(SCAN, "Passive")
+    field(OUT, "dummyslave$(P):bi2 PP") 
+}
+
+
+
+record(ao, "dummyioc$(P):ai2") {
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(OUT, "dummyioc$(P):ao2 PP")
+}
+
+record(ao, "dummyioc$(P):ao2") {
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(OUT, "dummyslave$(P):ai2 PP") 
+}
+
+#########################################################
+#########################################################
+#########################################################
