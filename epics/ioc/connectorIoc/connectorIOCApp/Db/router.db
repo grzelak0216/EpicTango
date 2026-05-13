@@ -1,0 +1,40 @@
+# ===== Broadcast =====
+record(bo, "CONNECTOR:BIT_BROADCAST") {
+    field(VAL, "0")
+}
+
+record(ao, "CONNECTOR:ANALOG_BROADCAST") {
+    field(VAL, "0")
+}
+
+record(waveform, "CONNECTOR:ARRAY_BROADCAST") {
+    field(FTVL, "UCHAR")
+    field(NELM, "16")
+}
+
+# ===== From slaves =====
+record(bi, "CONNECTOR:BIT_FROM_3") {
+    field(INP, "@pva://IOC3:BIT_OUT CP")
+}
+record(bi, "CONNECTOR:BIT_FROM_4") {
+    field(INP, "@pva://IOC4:BIT_OUT CP")
+}
+record(bi, "CONNECTOR:BIT_FROM_5") {
+    field(INP, "@pva://IOC5:BIT_OUT CP")
+}
+
+record(ai, "CONNECTOR:ANALOG_FROM_3") {
+    field(INP, "@pva://IOC3:ANALOG_OUT CP")
+}
+record(ai, "CONNECTOR:ANALOG_FROM_4") {
+    field(INP, "@pva://IOC4:ANALOG_OUT CP")
+}
+record(ai, "CONNECTOR:ANALOG_FROM_5") {
+    field(INP, "@pva://IOC5:ANALOG_OUT CP")
+}
+
+record(waveform, "CONNECTOR:ARRAY_FROM_3") {
+    field(FTVL, "UCHAR")
+    field(NELM, "16")
+    field(INP, "@pva://IOC3:BIT_ARRAY_OUT CP")
+}

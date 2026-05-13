@@ -1,0 +1,83 @@
+# # ===== COMMUNICATION TIME =====
+
+# record(ao, "IOC1:COMM_TIME_3") {
+#     field(OUT, "@pva://IOC3:COMM_TIME_IN PP")
+# }
+# record(ai, "IOC1:COMM_TIME_RETURN_3") {
+#     field(INP, "@pva://IOC3:COMM_TIME_ECHO CP")
+# }
+
+# # powiel dla 4,5...
+
+# # ===== CONTROL =====
+
+# record(bo, "IOC1:CONTROL") {
+#     field(VAL, "0")
+# }
+
+# record(bi, "IOC1:ACK_3") {
+#     field(INP, "@pva://IOC3:CONTROL_ACK CP")
+# }
+
+# # ===== AGGREGACJA ACK =====
+
+# record(calc, "IOC1:ALL_ACK") {
+#     field(INPA, "IOC1:ACK_3")
+#     field(INPB, "IOC1:ACK_4")
+#     field(INPC, "IOC1:ACK_5")
+#     field(CALC, "A&B&C")
+# }
+
+# # ===== BROADCAST =====
+
+# record(bo, "IOC1:BIT_SET") {
+#     field(OUT, "@pva://IOC2:BIT_BROADCAST PP")
+# }
+
+# record(ao, "IOC1:ANALOG_SET") {
+#     field(OUT, "@pva://IOC2:ANALOG_BROADCAST PP")
+# }
+
+
+
+
+# ===== Communication time =====
+record(ao, "IOC1:COMM_TIME_3") {
+    field(OUT, "@pva://IOC3:COMM_TIME_FROM_MASTER PP")
+}
+record(ao, "IOC1:COMM_TIME_4") {
+    field(OUT, "@pva://IOC4:COMM_TIME_FROM_MASTER PP")
+}
+record(ao, "IOC1:COMM_TIME_5") {
+    field(OUT, "@pva://IOC5:COMM_TIME_FROM_MASTER PP")
+}
+
+# ===== Control bit =====
+record(bo, "IOC1:CONTROL") {
+    field(VAL, "0")
+}
+
+record(bi, "IOC1:ACK_3") {
+    field(INP, "@pva://IOC3:CONTROL_ACK CP")
+}
+record(bi, "IOC1:ACK_4") {
+    field(INP, "@pva://IOC4:CONTROL_ACK CP")
+}
+record(bi, "IOC1:ACK_5") {
+    field(INP, "@pva://IOC5:CONTROL_ACK CP")
+}
+
+# ===== Broadcast via IOC2 =====
+record(bo, "IOC1:BIT_SET") {
+    field(OUT, "@pva://IOC2:BIT_BROADCAST PP")
+}
+
+record(ao, "IOC1:ANALOG_SET") {
+    field(OUT, "@pva://IOC2:ANALOG_BROADCAST PP")
+}
+
+record(waveform, "IOC1:ARRAY_SET") {
+    field(FTVL, "UCHAR")
+    field(NELM, "16")
+    field(OUT, "@pva://IOC2:ARRAY_BROADCAST PP")
+}
