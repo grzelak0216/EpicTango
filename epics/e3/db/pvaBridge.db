@@ -1,0 +1,19 @@
+record(ai, "IOC_V2:version") {
+    field(DESC, "Wersja zdalnego IOC")
+    field(DTYP, "PVA")
+    field(INP, "pva://192.168.30.121/VERSION")
+    field(SCAN, "10 second")
+}
+
+record(ai, "IOC_V2:status") {
+    field(DESC, "Status zdalnego IOC")
+    field(DTYP, "PVA")
+    field(INP, "pva://192.168.30.121/STATUS")
+    field(SCAN, "5 second")
+}
+
+record(ao, "IOC_V2:command") {
+    field(DESC, "Komenda do zdalnego IOC")
+    field(DTYP, "PVA")
+    field(OUT, "pva://192.168.30.121/COMMAND")
+}

@@ -1,0 +1,10 @@
+record(ai, "CONNECTION_STATUS") {
+    field(DESC, "Status połączenia z IOC_v2")
+    field(SCAN, "1 second")
+    field(INP, "@asyn(192.168.30.121:5064)")
+}
+
+record(stringin, "REMOTE_IOC_ADDR") {
+    field(DESC, "Adres zdalnego IOC")
+    field(VAL, "192.168.30.121")
+}

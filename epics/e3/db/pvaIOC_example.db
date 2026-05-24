@@ -1,0 +1,28 @@
+# Rekordy dla komunikacji PVA z IOC
+record(stringin, "$(PREFIX)IOC_IP_Address")
+{
+    field(DESC, "IP adres zdalnego IOC")
+    field(VAL, "$(IOC_IP)")
+}
+
+record(ai, "$(PREFIX)IOC_Connection")
+{
+    field(DESC, "Status połączenia z IOC")
+    field(EGU, "Status")
+    field(LOPR, "0")
+    field(HOPR, "1")
+}
+
+record(ai, "$(PREFIX)PVA_Channel1")
+{
+    field(DESC, "Kanał PVA 1")
+    field(DTYP, "asyn")
+    field(OUT, "@asyn(PVA1,0)CH1")
+}
+
+record(ao, "$(PREFIX)PVA_Command")
+{
+    field(DESC, "Polecenia do zdalnego IOC")
+    field(DTYP, "asyn")
+    field(OUT, "@asyn(PVA1,0)CMD")
+}
