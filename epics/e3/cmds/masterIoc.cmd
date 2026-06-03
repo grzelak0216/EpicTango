@@ -11,7 +11,7 @@ epicsEnvSet("EPICS_CA_SERVER_PORT", "5064")
 epicsEnvSet("EPICS_CA_REPEATER_PORT", "5065")
 
 ## Load record instances
-dbLoadRecords "~/EpicTango/epics/e3/db/master.db"
+dbLoadRecords "../db/master.db"
 
 iocInit
 

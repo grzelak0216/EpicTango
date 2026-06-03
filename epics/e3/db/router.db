@@ -26,40 +26,36 @@ record(waveform, "ROUTER:DATA_ARRAY") {
 }
 
 # ===== Rekordy do odczytu z masterIOC przez PVA =====
+# Używamy składni @pva:// dla linków PVA
 record(ai, "MASTER:VERSION") {
     field(DESC, "Wersja Master IOC")
-    field(DTYP, "pvaccess")
-    field(INP, "MASTER:VERSION")
+    field(INP, "@pva://MASTER:VERSION")
     field(SCAN, "10 second")
 }
 
 record(ai, "MASTER:STATUS") {
     field(DESC, "Status Master IOC")
-    field(DTYP, "pvaccess")
-    field(INP, "MASTER:STATUS")
+    field(INP, "@pva://MASTER:STATUS")
     field(SCAN, "5 second")
 }
 
 record(waveform, "MASTER:DATA_ARRAY") {
     field(DESC, "Dane z Master IOC")
-    field(DTYP, "pvaccess")
     field(FTVL, "UCHAR")
     field(NELM, "16")
-    field(INP, "MASTER:DATA_ARRAY")
+    field(INP, "@pva://MASTER:DATA_ARRAY")
     field(SCAN, "1 second")
 }
 
-# ===== Rekordy do wysyłania do masterIOC =====
+# ===== Rekordy do wysyłania do masterIOC przez PVA =====
 record(ao, "ROUTER:COMMAND_TO_MASTER") {
     field(DESC, "Komenda do Master IOC")
-    field(DTYP, "pvaccess")
-    field(OUT, "MASTER:COMMAND PP")
+    field(OUT, "@pva://MASTER:COMMAND PP")
 }
 
 record(bo, "ROUTER:CONTROL_BIT_TO_MASTER") {
     field(DESC, "Bit sterujący do Master IOC")
-    field(DTYP, "pvaccess")
-    field(OUT, "MASTER:CONTROL_BIT PP")
+    field(OUT, "@pva://MASTER:CONTROL_BIT PP")
 }
 
 # ===== Status połączenia =====

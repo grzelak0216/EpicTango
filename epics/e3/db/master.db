@@ -9,6 +9,16 @@ record(ai, "MASTER:STATUS") {
     field(VAL, "1")
 }
 
+record(ao, "MASTER:COMMAND") {
+    field(DESC, "Odebrane komendy z routera")
+    field(VAL, "0")
+}
+
+record(bo, "MASTER:CONTROL_BIT") {
+    field(DESC, "Bit sterujący z routera")
+    field(VAL, "0")
+}
+
 record(waveform, "MASTER:DATA_ARRAY") {
     field(DESC, "Tablica danych z mastera")
     field(FTVL, "UCHAR")
@@ -18,38 +28,33 @@ record(waveform, "MASTER:DATA_ARRAY") {
 # ===== Rekordy do odczytu z routerIOC przez PVA =====
 record(ai, "ROUTER:VERSION") {
     field(DESC, "Wersja Router IOC")
-    field(DTYP, "pvaccess")
-    field(INP, "ROUTER:VERSION")
+    field(INP, "@pva://ROUTER:VERSION")
     field(SCAN, "10 second")
 }
 
 record(ai, "ROUTER:STATUS") {
     field(DESC, "Status Router IOC")
-    field(DTYP, "pvaccess")
-    field(INP, "ROUTER:STATUS")
+    field(INP, "@pva://ROUTER:STATUS")
     field(SCAN, "5 second")
 }
 
 record(waveform, "ROUTER:DATA_ARRAY") {
     field(DESC, "Dane z Router IOC")
-    field(DTYP, "pvaccess")
     field(FTVL, "UCHAR")
     field(NELM, "16")
-    field(INP, "ROUTER:DATA_ARRAY")
+    field(INP, "@pva://ROUTER:DATA_ARRAY")
     field(SCAN, "1 second")
 }
 
-# ===== Rekordy do wysyłania do routerIOC =====
-record(ao, "MASTER:COMMAND") {
+# ===== Rekordy do wysyłania do routerIOC przez PVA =====
+record(ao, "MASTER:COMMAND_TO_ROUTER") {
     field(DESC, "Komenda do Router IOC")
-    field(DTYP, "pvaccess")
-    field(OUT, "ROUTER:COMMAND PP")
+    field(OUT, "@pva://ROUTER:COMMAND PP")
 }
 
-record(bo, "MASTER:CONTROL_BIT") {
+record(bo, "MASTER:CONTROL_BIT_TO_ROUTER") {
     field(DESC, "Bit sterujący do Router IOC")
-    field(DTYP, "pvaccess")
-    field(OUT, "ROUTER:CONTROL_BIT PP")
+    field(OUT, "@pva://ROUTER:CONTROL_BIT PP")
 }
 
 # ===== Status połączenia =====
