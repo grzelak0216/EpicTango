@@ -2,18 +2,18 @@
 ############# MASTER IOC - REKORDY LOKALNE ##############
 #########################################################
 
-record(ai, "$(IOC):VERSION") {
-    field(DESC, "Wersja $(IOC) IOC")
+record(ai, "$(IOC=MASTER):VERSION") {
+    field(DESC, "Wersja $(IOC=MASTER) IOC")
     field(VAL, "1.0")
 }
 
-record(ai, "$(IOC):STATUS") {
-    field(DESC, "Status $(IOC) IOC")
+record(ai, "$(IOC=MASTER):STATUS") {
+    field(DESC, "Status $(IOC=MASTER) IOC")
     field(VAL, "1")
 }
 
-record(waveform, "$(IOC):DATA_ARRAY") {
-    field(DESC, "Tablica danych $(IOC)")
+record(waveform, "$(IOC=MASTER):DATA_ARRAY") {
+    field(DESC, "Tablica danych $(IOC=MASTER)")
     field(FTVL, "UCHAR")
     field(NELM, "16")
 }
@@ -22,63 +22,62 @@ record(waveform, "$(IOC):DATA_ARRAY") {
 ######### MASTER IOC - DANE Z ROUTERA (INPUT) ###########
 #########################################################
 
-# Krytyczne dane z routera
-record(ai, "$(IOC):$(REMOTE)_VERSION") {
-    field(DESC, "Wersja $(REMOTE) IOC")
+record(ai, "$(IOC=MASTER):$(REMOTE=ROUTER)_VERSION") {
+    field(DESC, "Wersja $(REMOTE=ROUTER) IOC")
     field(DTYP, "Soft Channel")
     field(SCAN, "10 second")
-    field(INP, "$(REMOTE):VERSION CP")
+    field(INP, "$(REMOTE=ROUTER):VERSION CP")
 }
 
-record(ai, "$(IOC):$(REMOTE)_STATUS") {
-    field(DESC, "Status $(REMOTE) IOC")
+record(ai, "$(IOC=MASTER):$(REMOTE=ROUTER)_STATUS") {
+    field(DESC, "Status $(REMOTE=ROUTER) IOC")
     field(DTYP, "Soft Channel")
     field(SCAN, "5 second")
-    field(INP, "$(REMOTE):STATUS CP")
+    field(INP, "$(REMOTE=ROUTER):STATUS CP")
 }
 
-record(waveform, "$(IOC):$(REMOTE)_DATA") {
-    field(DESC, "Dane z $(REMOTE) IOC")
+record(waveform, "$(IOC=MASTER):$(REMOTE=ROUTER)_DATA") {
+    field(DESC, "Dane z $(REMOTE=ROUTER) IOC")
     field(DTYP, "Soft Channel")
     field(FTVL, "UCHAR")
     field(NELM, "16")
     field(SCAN, "1 second")
-    field(INP, "$(REMOTE):DATA_ARRAY CP")
+    field(INP, "$(REMOTE=ROUTER):DATA_ARRAY CP")
 }
 
 #########################################################
 ###### MASTER IOC - KOMENDY DO ROUTERA (OUTPUT) #########
 #########################################################
 
-record(ao, "$(IOC):SEND_COMMAND") {
-    field(DESC, "Wyslij komende do $(REMOTE)")
+record(ao, "$(IOC=MASTER):SEND_COMMAND") {
+    field(DESC, "Wyslij komende do $(REMOTE=ROUTER)")
     field(DTYP, "Soft Channel")
     field(SCAN, "Passive")
-    field(OUT, "$(REMOTE):RECEIVE_COMMAND PP")
+    field(OUT, "$(REMOTE=ROUTER):RECEIVE_COMMAND PP")
 }
 
-record(bo, "$(IOC):SEND_CONTROL") {
-    field(DESC, "Wyslij sterowanie do $(REMOTE)")
+record(bo, "$(IOC=MASTER):SEND_CONTROL") {
+    field(DESC, "Wyslij sterowanie do $(REMOTE=ROUTER)")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Off")    
     field(ONAM, "On")
     field(SCAN, "Passive")
-    field(OUT, "$(REMOTE):RECEIVE_CONTROL PP")
+    field(OUT, "$(REMOTE=ROUTER):RECEIVE_CONTROL PP")
 }
 
 #########################################################
 ########### MASTER IOC - STATUS POLACZENIA ##############
 #########################################################
 
-record(bi, "$(IOC):CONNECTION_STATUS") {
-    field(DESC, "Status polaczenia z $(REMOTE)")
+record(bi, "$(IOC=MASTER):CONNECTION_STATUS") {
+    field(DESC, "Status polaczenia z $(REMOTE=ROUTER)")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Disconnected")
     field(ONAM, "Connected")
     field(VAL, "0")
 }
 
-record(stringin, "$(IOC):CONNECTED_TO") {
+record(stringin, "$(IOC=MASTER):CONNECTED_TO") {
     field(DESC, "Polaczony z IOC")
-    field(VAL, "$(REMOTE_IP)")
+    field(VAL, "$(REMOTE_IP=192.168.20.101)")
 }

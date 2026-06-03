@@ -8,14 +8,13 @@ epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST", "NO")
 epicsEnvSet("EPICS_CA_ADDR_LIST", "192.168.30.100")
 
 ## Ustawienia projektu
-epicsEnvSet("TOP", "$(E3_CMD_TOP)/..")
 epicsEnvSet("IOC_NAME", "MASTER")
 epicsEnvSet("REMOTE_IOC", "ROUTER")
 epicsEnvSet("REMOTE_IP", "192.168.20.101")
 
 ## Ładowanie rekordów
-dbLoadRecords("$(TOP)/db/master.db", "IOC=$(IOC_NAME),REMOTE=$(REMOTE_IOC),REMOTE_IP=$(REMOTE_IP)")
+dbLoadRecords("../db/master.db", "IOC=MASTER,REMOTE=ROUTER,REMOTE_IP=192.168.20.101")
 
 iocInit()
 
-dbpf "$(IOC):CONNECTION_STATUS", "1"
+dbpf "MASTER:CONNECTION_STATUS", "1"

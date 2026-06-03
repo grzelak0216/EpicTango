@@ -2,32 +2,32 @@
 ############# ROUTER IOC - REKORDY LOKALNE ##############
 #########################################################
 
-record(ai, "$(IOC):VERSION") {
-    field(DESC, "Wersja $(IOC) IOC")
+record(ai, "$(IOC=ROUTER):VERSION") {
+    field(DESC, "Wersja $(IOC=ROUTER) IOC")
     field(VAL, "1.0")
 }
 
-record(ai, "$(IOC):STATUS") {
-    field(DESC, "Status $(IOC) IOC")
+record(ai, "$(IOC=ROUTER):STATUS") {
+    field(DESC, "Status $(IOC=ROUTER) IOC")
     field(VAL, "1")
 }
 
-record(ao, "$(IOC):RECEIVE_COMMAND") {
-    field(DESC, "Odebrana komenda z $(REMOTE)")
+record(ao, "$(IOC=ROUTER):RECEIVE_COMMAND") {
+    field(DESC, "Odebrana komenda z $(REMOTE=MASTER)")
     field(DTYP, "Soft Channel")
     field(VAL, "0")
 }
 
-record(bo, "$(IOC):RECEIVE_CONTROL") {
-    field(DESC, "Odebrane sterowanie z $(REMOTE)")
+record(bo, "$(IOC=ROUTER):RECEIVE_CONTROL") {
+    field(DESC, "Odebrane sterowanie z $(REMOTE=MASTER)")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Off")    
     field(ONAM, "On")
     field(VAL, "0")
 }
 
-record(waveform, "$(IOC):DATA_ARRAY") {
-    field(DESC, "Tablica danych $(IOC)")
+record(waveform, "$(IOC=ROUTER):DATA_ARRAY") {
+    field(DESC, "Tablica danych $(IOC=ROUTER)")
     field(FTVL, "UCHAR")
     field(NELM, "16")
 }
@@ -36,62 +36,62 @@ record(waveform, "$(IOC):DATA_ARRAY") {
 ######### ROUTER IOC - DANE Z MASTERA (INPUT) ###########
 #########################################################
 
-record(ai, "$(IOC):$(REMOTE)_VERSION") {
-    field(DESC, "Wersja $(REMOTE) IOC")
+record(ai, "$(IOC=ROUTER):$(REMOTE=MASTER)_VERSION") {
+    field(DESC, "Wersja $(REMOTE=MASTER) IOC")
     field(DTYP, "Soft Channel")
     field(SCAN, "10 second")
-    field(INP, "$(REMOTE):VERSION CP")
+    field(INP, "$(REMOTE=MASTER):VERSION CP")
 }
 
-record(ai, "$(IOC):$(REMOTE)_STATUS") {
-    field(DESC, "Status $(REMOTE) IOC")
+record(ai, "$(IOC=ROUTER):$(REMOTE=MASTER)_STATUS") {
+    field(DESC, "Status $(REMOTE=MASTER) IOC")
     field(DTYP, "Soft Channel")
     field(SCAN, "5 second")
-    field(INP, "$(REMOTE):STATUS CP")
+    field(INP, "$(REMOTE=MASTER):STATUS CP")
 }
 
-record(waveform, "$(IOC):$(REMOTE)_DATA") {
-    field(DESC, "Dane z $(REMOTE) IOC")
+record(waveform, "$(IOC=ROUTER):$(REMOTE=MASTER)_DATA") {
+    field(DESC, "Dane z $(REMOTE=MASTER) IOC")
     field(DTYP, "Soft Channel")
     field(FTVL, "UCHAR")
     field(NELM, "16")
     field(SCAN, "1 second")
-    field(INP, "$(REMOTE):DATA_ARRAY CP")
+    field(INP, "$(REMOTE=MASTER):DATA_ARRAY CP")
 }
 
 #########################################################
 ###### ROUTER IOC - KOMENDY DO MASTERA (OUTPUT) #########
 #########################################################
 
-record(ao, "$(IOC):SEND_COMMAND") {
-    field(DESC, "Wyslij komende do $(REMOTE)")
+record(ao, "$(IOC=ROUTER):SEND_COMMAND") {
+    field(DESC, "Wyslij komende do $(REMOTE=MASTER)")
     field(DTYP, "Soft Channel")
     field(SCAN, "Passive")
-    field(OUT, "$(REMOTE):RECEIVE_COMMAND PP")
+    field(OUT, "$(REMOTE=MASTER):RECEIVE_COMMAND PP")
 }
 
-record(bo, "$(IOC):SEND_CONTROL") {
-    field(DESC, "Wyslij sterowanie do $(REMOTE)")
+record(bo, "$(IOC=ROUTER):SEND_CONTROL") {
+    field(DESC, "Wyslij sterowanie do $(REMOTE=MASTER)")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Off")    
     field(ONAM, "On")
     field(SCAN, "Passive")
-    field(OUT, "$(REMOTE):RECEIVE_CONTROL PP")
+    field(OUT, "$(REMOTE=MASTER):RECEIVE_CONTROL PP")
 }
 
 #########################################################
 ########### ROUTER IOC - STATUS POLACZENIA ##############
 #########################################################
 
-record(bi, "$(IOC):CONNECTION_STATUS") {
-    field(DESC, "Status polaczenia z $(REMOTE)")
+record(bi, "$(IOC=ROUTER):CONNECTION_STATUS") {
+    field(DESC, "Status polaczenia z $(REMOTE=MASTER)")
     field(DTYP, "Soft Channel")
     field(ZNAM, "Disconnected")
     field(ONAM, "Connected")
     field(VAL, "0")
 }
 
-record(stringin, "$(IOC):CONNECTED_TO") {
+record(stringin, "$(IOC=ROUTER):CONNECTED_TO") {
     field(DESC, "Polaczony z IOC")
-    field(VAL, "$(REMOTE_IP)")
+    field(VAL, "$(REMOTE_IP=192.168.30.100)")
 }
