@@ -1,71 +1,84 @@
-# ===== Lokalne rekordy mastera =====
-record(ai, "MASTER:VERSION") {
-    field(DESC, "Wersja Master IOC")
+#########################################################
+############# MASTER IOC - REKORDY LOKALNE ##############
+#########################################################
+
+record(ai, "$(IOC):VERSION") {
+    field(DESC, "Wersja $(IOC) IOC")
     field(VAL, "1.0")
 }
 
-record(ai, "MASTER:STATUS") {
-    field(DESC, "Status Master IOC")
+record(ai, "$(IOC):STATUS") {
+    field(DESC, "Status $(IOC) IOC")
     field(VAL, "1")
 }
 
-record(ao, "MASTER:COMMAND") {
-    field(DESC, "Odebrane komendy z routera")
-    field(VAL, "0")
-}
-
-record(bo, "MASTER:CONTROL_BIT") {
-    field(DESC, "Bit sterujący z routera")
-    field(VAL, "0")
-}
-
-record(waveform, "MASTER:DATA_ARRAY") {
-    field(DESC, "Tablica danych z mastera")
+record(waveform, "$(IOC):DATA_ARRAY") {
+    field(DESC, "Tablica danych $(IOC)")
     field(FTVL, "UCHAR")
     field(NELM, "16")
 }
 
-# ===== Rekordy do odczytu z routerIOC przez PVA =====
-record(ai, "ROUTER:VERSION") {
-    field(DESC, "Wersja Router IOC")
-    field(INP, "@pva://ROUTER:VERSION")
+#########################################################
+######### MASTER IOC - DANE Z ROUTERA (INPUT) ###########
+#########################################################
+
+# Krytyczne dane z routera
+record(ai, "$(IOC):$(REMOTE)_VERSION") {
+    field(DESC, "Wersja $(REMOTE) IOC")
+    field(DTYP, "Soft Channel")
     field(SCAN, "10 second")
+    field(INP, "$(REMOTE):VERSION CP")
 }
 
-record(ai, "ROUTER:STATUS") {
-    field(DESC, "Status Router IOC")
-    field(INP, "@pva://ROUTER:STATUS")
+record(ai, "$(IOC):$(REMOTE)_STATUS") {
+    field(DESC, "Status $(REMOTE) IOC")
+    field(DTYP, "Soft Channel")
     field(SCAN, "5 second")
+    field(INP, "$(REMOTE):STATUS CP")
 }
 
-record(waveform, "ROUTER:DATA_ARRAY") {
-    field(DESC, "Dane z Router IOC")
+record(waveform, "$(IOC):$(REMOTE)_DATA") {
+    field(DESC, "Dane z $(REMOTE) IOC")
+    field(DTYP, "Soft Channel")
     field(FTVL, "UCHAR")
     field(NELM, "16")
-    field(INP, "@pva://ROUTER:DATA_ARRAY")
     field(SCAN, "1 second")
+    field(INP, "$(REMOTE):DATA_ARRAY CP")
 }
 
-# ===== Rekordy do wysyłania do routerIOC przez PVA =====
-record(ao, "MASTER:COMMAND_TO_ROUTER") {
-    field(DESC, "Komenda do Router IOC")
-    field(OUT, "@pva://ROUTER:COMMAND PP")
+#########################################################
+###### MASTER IOC - KOMENDY DO ROUTERA (OUTPUT) #########
+#########################################################
+
+record(ao, "$(IOC):SEND_COMMAND") {
+    field(DESC, "Wyslij komende do $(REMOTE)")
+    field(DTYP, "Soft Channel")
+    field(SCAN, "Passive")
+    field(OUT, "$(REMOTE):RECEIVE_COMMAND PP")
 }
 
-record(bo, "MASTER:CONTROL_BIT_TO_ROUTER") {
-    field(DESC, "Bit sterujący do Router IOC")
-    field(OUT, "@pva://ROUTER:CONTROL_BIT PP")
+record(bo, "$(IOC):SEND_CONTROL") {
+    field(DESC, "Wyslij sterowanie do $(REMOTE)")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "Off")    
+    field(ONAM, "On")
+    field(SCAN, "Passive")
+    field(OUT, "$(REMOTE):RECEIVE_CONTROL PP")
 }
 
-# ===== Status połączenia =====
-record(bi, "CONNECTION_STATUS") {
-    field(DESC, "Status polaczenia z Router IOC")
-    field(VAL, "0")
+#########################################################
+########### MASTER IOC - STATUS POLACZENIA ##############
+#########################################################
+
+record(bi, "$(IOC):CONNECTION_STATUS") {
+    field(DESC, "Status polaczenia z $(REMOTE)")
+    field(DTYP, "Soft Channel")
     field(ZNAM, "Disconnected")
     field(ONAM, "Connected")
+    field(VAL, "0")
 }
 
-record(stringin, "CONNECTED_TO") {
-    field(DESC, "Adres zdalnego IOC")
-    field(VAL, "192.168.20.101")
+record(stringin, "$(IOC):CONNECTED_TO") {
+    field(DESC, "Polaczony z IOC")
+    field(VAL, "$(REMOTE_IP)")
 }
