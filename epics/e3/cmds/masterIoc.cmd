@@ -1,3 +1,5 @@
+epicsEnvSet("TOP", "$(E3_CMD_TOP)/..")
+
 cd "${TOP}"
 
 ## Konfig PVA
@@ -12,8 +14,8 @@ epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST", "NO")
 epicsEnvSet("EPICS_CA_SERVER_PORT", "5064")
 epicsEnvSet("EPICS_CA_REPEATER_PORT", "5065")
 
-## PVA server start - should be after environment setup
-pvaSrvStart
+# ## PVA server start - should be after environment setup
+# pvaSrvStart
 
 ## Load record instances
 dbLoadRecords "db/router.db" 
@@ -25,9 +27,5 @@ dbLoadRecords "db/pvaBridge.db", "REMOTE_IOC_IP=192.168.20.101"
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
-
-## Fixed: Use correct PV names based on your database
-pvaLinkConnect("IOC_V2:version")
-pvaLinkConnect("IOC_V2:status")
 
 dbpf "CONNECTION_STATUS", "Connected to 192.168.20.101"
