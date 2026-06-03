@@ -1,83 +1,66 @@
-# # ===== COMMUNICATION TIME =====
-
-# record(ao, "IOC1:COMM_TIME_3") {
-#     field(OUT, "@pva://IOC3:COMM_TIME_IN PP")
-# }
-# record(ai, "IOC1:COMM_TIME_RETURN_3") {
-#     field(INP, "@pva://IOC3:COMM_TIME_ECHO CP")
-# }
-
-# # powiel dla 4,5...
-
-# # ===== CONTROL =====
-
-# record(bo, "IOC1:CONTROL") {
-#     field(VAL, "0")
-# }
-
-# record(bi, "IOC1:ACK_3") {
-#     field(INP, "@pva://IOC3:CONTROL_ACK CP")
-# }
-
-# # ===== AGGREGACJA ACK =====
-
-# record(calc, "IOC1:ALL_ACK") {
-#     field(INPA, "IOC1:ACK_3")
-#     field(INPB, "IOC1:ACK_4")
-#     field(INPC, "IOC1:ACK_5")
-#     field(CALC, "A&B&C")
-# }
-
-# # ===== BROADCAST =====
-
-# record(bo, "IOC1:BIT_SET") {
-#     field(OUT, "@pva://IOC2:BIT_BROADCAST PP")
-# }
-
-# record(ao, "IOC1:ANALOG_SET") {
-#     field(OUT, "@pva://IOC2:ANALOG_BROADCAST PP")
-# }
-
-
-
-
-# ===== Communication time =====
-record(ao, "IOC1:COMM_TIME_3") {
-    field(OUT, "@pva://IOC3:COMM_TIME_FROM_MASTER PP")
-}
-record(ao, "IOC1:COMM_TIME_4") {
-    field(OUT, "@pva://IOC4:COMM_TIME_FROM_MASTER PP")
-}
-record(ao, "IOC1:COMM_TIME_5") {
-    field(OUT, "@pva://IOC5:COMM_TIME_FROM_MASTER PP")
+# ===== Lokalne rekordy mastera =====
+record(ai, "MASTER:VERSION") {
+    field(DESC, "Wersja Master IOC")
+    field(VAL, "1.0")
 }
 
-# ===== Control bit =====
-record(bo, "IOC1:CONTROL") {
-    field(VAL, "0")
+record(ai, "MASTER:STATUS") {
+    field(DESC, "Status Master IOC")
+    field(VAL, "1")
 }
 
-record(bi, "IOC1:ACK_3") {
-    field(INP, "@pva://IOC3:CONTROL_ACK CP")
-}
-record(bi, "IOC1:ACK_4") {
-    field(INP, "@pva://IOC4:CONTROL_ACK CP")
-}
-record(bi, "IOC1:ACK_5") {
-    field(INP, "@pva://IOC5:CONTROL_ACK CP")
-}
-
-# ===== Broadcast via IOC2 =====
-record(bo, "IOC1:BIT_SET") {
-    field(OUT, "@pva://IOC2:BIT_BROADCAST PP")
-}
-
-record(ao, "IOC1:ANALOG_SET") {
-    field(OUT, "@pva://IOC2:ANALOG_BROADCAST PP")
-}
-
-record(waveform, "IOC1:ARRAY_SET") {
+record(waveform, "MASTER:DATA_ARRAY") {
+    field(DESC, "Tablica danych z mastera")
     field(FTVL, "UCHAR")
     field(NELM, "16")
-    field(OUT, "@pva://IOC2:ARRAY_BROADCAST PP")
+}
+
+# ===== Rekordy do odczytu z routerIOC przez PVA =====
+record(ai, "ROUTER:VERSION") {
+    field(DESC, "Wersja Router IOC")
+    field(DTYP, "pvaccess")
+    field(INP, "ROUTER:VERSION")
+    field(SCAN, "10 second")
+}
+
+record(ai, "ROUTER:STATUS") {
+    field(DESC, "Status Router IOC")
+    field(DTYP, "pvaccess")
+    field(INP, "ROUTER:STATUS")
+    field(SCAN, "5 second")
+}
+
+record(waveform, "ROUTER:DATA_ARRAY") {
+    field(DESC, "Dane z Router IOC")
+    field(DTYP, "pvaccess")
+    field(FTVL, "UCHAR")
+    field(NELM, "16")
+    field(INP, "ROUTER:DATA_ARRAY")
+    field(SCAN, "1 second")
+}
+
+# ===== Rekordy do wysyłania do routerIOC =====
+record(ao, "MASTER:COMMAND") {
+    field(DESC, "Komenda do Router IOC")
+    field(DTYP, "pvaccess")
+    field(OUT, "ROUTER:COMMAND PP")
+}
+
+record(bo, "MASTER:CONTROL_BIT") {
+    field(DESC, "Bit sterujący do Router IOC")
+    field(DTYP, "pvaccess")
+    field(OUT, "ROUTER:CONTROL_BIT PP")
+}
+
+# ===== Status połączenia =====
+record(bi, "CONNECTION_STATUS") {
+    field(DESC, "Status polaczenia z Router IOC")
+    field(VAL, "0")
+    field(ZNAM, "Disconnected")
+    field(ONAM, "Connected")
+}
+
+record(stringin, "CONNECTED_TO") {
+    field(DESC, "Adres zdalnego IOC")
+    field(VAL, "192.168.20.101")
 }

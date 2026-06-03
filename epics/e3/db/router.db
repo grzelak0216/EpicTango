@@ -1,48 +1,76 @@
-# ===== Broadcast =====
-record(bo, "CONNECTOR:BIT_BROADCAST") {
+# ===== Lokalne rekordy routera =====
+record(ai, "ROUTER:VERSION") {
+    field(DESC, "Wersja Router IOC")
+    field(VAL, "1.0")
+}
+
+record(ai, "ROUTER:STATUS") {
+    field(DESC, "Status Router IOC")
+    field(VAL, "1")
+}
+
+record(ao, "ROUTER:COMMAND") {
+    field(DESC, "Odebrane komendy z mastera")
     field(VAL, "0")
 }
 
-record(ao, "CONNECTOR:ANALOG_BROADCAST") {
+record(bo, "ROUTER:CONTROL_BIT") {
+    field(DESC, "Bit sterujący z mastera")
     field(VAL, "0")
 }
 
-record(waveform, "CONNECTOR:ARRAY_BROADCAST") {
+record(waveform, "ROUTER:DATA_ARRAY") {
+    field(DESC, "Tablica danych routera")
     field(FTVL, "UCHAR")
     field(NELM, "16")
 }
 
-# ===== From slaves (using PVA) =====
-# Fixed: Use proper PVA link syntax
-record(bi, "CONNECTOR:BIT_FROM_3") {
-    field(INP, {"pva":{"pv":"IOC3:BIT_OUT"}})
-    field(SCAN, "1 second")
-}
-record(bi, "CONNECTOR:BIT_FROM_4") {
-    field(INP, {"pva":{"pv":"IOC4:BIT_OUT"}})
-    field(SCAN, "1 second")
-}
-record(bi, "CONNECTOR:BIT_FROM_5") {
-    field(INP, {"pva":{"pv":"IOC5:BIT_OUT"}})
-    field(SCAN, "1 second")
+# ===== Rekordy do odczytu z masterIOC przez PVA =====
+record(ai, "MASTER:VERSION") {
+    field(DESC, "Wersja Master IOC")
+    field(DTYP, "pvaccess")
+    field(INP, "MASTER:VERSION")
+    field(SCAN, "10 second")
 }
 
-record(ai, "CONNECTOR:ANALOG_FROM_3") {
-    field(INP, {"pva":{"pv":"IOC3:ANALOG_OUT"}})
-    field(SCAN, "1 second")
-}
-record(ai, "CONNECTOR:ANALOG_FROM_4") {
-    field(INP, {"pva":{"pv":"IOC4:ANALOG_OUT"}})
-    field(SCAN, "1 second")
-}
-record(ai, "CONNECTOR:ANALOG_FROM_5") {
-    field(INP, {"pva":{"pv":"IOC5:ANALOG_OUT"}})
-    field(SCAN, "1 second")
+record(ai, "MASTER:STATUS") {
+    field(DESC, "Status Master IOC")
+    field(DTYP, "pvaccess")
+    field(INP, "MASTER:STATUS")
+    field(SCAN, "5 second")
 }
 
-record(waveform, "CONNECTOR:ARRAY_FROM_3") {
+record(waveform, "MASTER:DATA_ARRAY") {
+    field(DESC, "Dane z Master IOC")
+    field(DTYP, "pvaccess")
     field(FTVL, "UCHAR")
     field(NELM, "16")
-    field(INP, {"pva":{"pv":"IOC3:BIT_ARRAY_OUT"}})
+    field(INP, "MASTER:DATA_ARRAY")
     field(SCAN, "1 second")
+}
+
+# ===== Rekordy do wysyłania do masterIOC =====
+record(ao, "ROUTER:COMMAND_TO_MASTER") {
+    field(DESC, "Komenda do Master IOC")
+    field(DTYP, "pvaccess")
+    field(OUT, "MASTER:COMMAND PP")
+}
+
+record(bo, "ROUTER:CONTROL_BIT_TO_MASTER") {
+    field(DESC, "Bit sterujący do Master IOC")
+    field(DTYP, "pvaccess")
+    field(OUT, "MASTER:CONTROL_BIT PP")
+}
+
+# ===== Status połączenia =====
+record(bi, "CONNECTION_STATUS") {
+    field(DESC, "Status polaczenia z Master IOC")
+    field(VAL, "0")
+    field(ZNAM, "Disconnected")
+    field(ONAM, "Connected")
+}
+
+record(stringin, "CONNECTED_TO") {
+    field(DESC, "Adres zdalnego IOC")
+    field(VAL, "192.168.30.100")
 }
