@@ -12,29 +12,37 @@ record(waveform, "CONNECTOR:ARRAY_BROADCAST") {
     field(NELM, "16")
 }
 
-# ===== From slaves =====
+# ===== From slaves (using PVA) =====
+# Fixed: Use proper PVA link syntax
 record(bi, "CONNECTOR:BIT_FROM_3") {
-    field(INP, "@pva://IOC3:BIT_OUT CP")
+    field(INP, {"pva":{"pv":"IOC3:BIT_OUT"}})
+    field(SCAN, "1 second")
 }
 record(bi, "CONNECTOR:BIT_FROM_4") {
-    field(INP, "@pva://IOC4:BIT_OUT CP")
+    field(INP, {"pva":{"pv":"IOC4:BIT_OUT"}})
+    field(SCAN, "1 second")
 }
 record(bi, "CONNECTOR:BIT_FROM_5") {
-    field(INP, "@pva://IOC5:BIT_OUT CP")
+    field(INP, {"pva":{"pv":"IOC5:BIT_OUT"}})
+    field(SCAN, "1 second")
 }
 
 record(ai, "CONNECTOR:ANALOG_FROM_3") {
-    field(INP, "@pva://IOC3:ANALOG_OUT CP")
+    field(INP, {"pva":{"pv":"IOC3:ANALOG_OUT"}})
+    field(SCAN, "1 second")
 }
 record(ai, "CONNECTOR:ANALOG_FROM_4") {
-    field(INP, "@pva://IOC4:ANALOG_OUT CP")
+    field(INP, {"pva":{"pv":"IOC4:ANALOG_OUT"}})
+    field(SCAN, "1 second")
 }
 record(ai, "CONNECTOR:ANALOG_FROM_5") {
-    field(INP, "@pva://IOC5:ANALOG_OUT CP")
+    field(INP, {"pva":{"pv":"IOC5:ANALOG_OUT"}})
+    field(SCAN, "1 second")
 }
 
 record(waveform, "CONNECTOR:ARRAY_FROM_3") {
     field(FTVL, "UCHAR")
     field(NELM, "16")
-    field(INP, "@pva://IOC3:BIT_ARRAY_OUT CP")
+    field(INP, {"pva":{"pv":"IOC3:BIT_ARRAY_OUT"}})
+    field(SCAN, "1 second")
 }

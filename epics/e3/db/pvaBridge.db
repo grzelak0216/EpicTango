@@ -1,19 +1,31 @@
+# Fixed: Use proper PVA link format and macro substitution
 record(ai, "IOC_V2:version") {
     field(DESC, "Wersja zdalnego IOC")
-    field(DTYP, "PVA")
-    field(INP, "pva://192.168.30.121/VERSION")
+    field(INP, {"pva":{"pv":"$(REMOTE_IOC_IP):VERSION"}})
     field(SCAN, "10 second")
 }
 
 record(ai, "IOC_V2:status") {
     field(DESC, "Status zdalnego IOC")
-    field(DTYP, "PVA")
-    field(INP, "pva://192.168.30.121/STATUS")
+    field(INP, {"pva":{"pv":"$(REMOTE_IOC_IP):STATUS"}})
     field(SCAN, "5 second")
 }
 
 record(ao, "IOC_V2:command") {
     field(DESC, "Komenda do zdalnego IOC")
-    field(DTYP, "PVA")
-    field(OUT, "pva://192.168.30.121/COMMAND")
+    field(OUT, {"pva":{"pv":"$(REMOTE_IOC_IP):COMMAND"}})
+}
+
+record(ai, "VERSION") {
+    field(DESC, "Lokalna wersja IOC")
+    field(VAL, "1.0")
+}
+
+record(ai, "STATUS") {
+    field(DESC, "Lokalny status IOC")
+    field(VAL, "1")
+}
+
+record(ao, "COMMAND") {
+    field(DESC, "Odbieranie komend")
 }

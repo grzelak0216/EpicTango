@@ -1,10 +1,12 @@
-record(ai, "CONNECTION_STATUS") {
-    field(DESC, "Status połączenia z IOC_v2")
+record(bi, "CONNECTION_STATUS") {
+    field(DESC, "Status polaczenia z zdalnym IOC")
     field(SCAN, "1 second")
-    field(INP, "@asyn(192.168.30.121:5064)")
+    field(INP, {"pva":{"pv":"$(REMOTE_IP):connection"}})
+    field(ZNAM, "Disconnected")
+    field(ONAM, "Connected")
 }
 
 record(stringin, "REMOTE_IOC_ADDR") {
     field(DESC, "Adres zdalnego IOC")
-    field(VAL, "192.168.30.121")
+    field(VAL, "$(REMOTE_IP)")
 }
