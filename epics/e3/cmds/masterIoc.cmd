@@ -1,5 +1,4 @@
 
-< envPaths
 
 cd "${TOP}"
 
@@ -36,5 +35,5 @@ iocInit
 pvaLinkConnect("IOC_V2:version")
 pvaLinkConnect("IOC_V2:status")
 
-## Monitorowanie połączeń
+
 dbpf "CONNECTION_STATUS", "Connected to 192.168.30.121"
